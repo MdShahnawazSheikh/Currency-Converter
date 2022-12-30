@@ -2,18 +2,7 @@ import tkinter
 import customtkinter
 from customtkinter import *
 from conversion import convert
-import pandas
 PROJECT_NAME = "Currency Converter"
-
-
-# Creating list of currencies
-data = pandas.read_csv("currency_codes.csv")
-raw = data.AlphabeticCode.to_list()
-currencies = []
-for code in raw:
-    if code not in currencies:
-        currencies.append(code)
-# Creating list of currencies
 
 
 # Modes: system (default), light, dark
@@ -22,6 +11,7 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("blue")
 
 app = customtkinter.CTk()  # create CTk window like you do with the Tk window
+app.iconbitmap('icon.ico')
 app.minsize(600, 310)
 app.maxsize(600, 310)
 app.title(PROJECT_NAME)
@@ -75,7 +65,6 @@ amount_box.place(x=200, y=140)
 # Convert button
 result_label = CTkLabel(master=app, text=f"Result: 0", font=('Arial', 20, 'bold'))
 def convert_button_action():
-
     try:
         amount = float(amount_box.get())
             # To handle invalid entry exception
@@ -90,9 +79,7 @@ def convert_button_action():
     except:
         result_label.configure(text="Please enter amount!")
         result_label.pack(side="bottom")
-
-    
-        
+   
 convert_button = CTkButton(master=app, text="Convert", font=("Arial", 15, 'bold'), command=convert_button_action)
 convert_button.place(x=200, y=175)
 # Convert button
